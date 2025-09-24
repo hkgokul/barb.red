@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Hello World</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BARB</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="hero.jpg" as="image" />
 </head>
 <body>
-  <h1>Hello World</h1>
-  <p>Welcome to barb.red</p>
-  
-  <!-- Button to go to About page -->
-  <a href="about.html">
-    <button>About</button>
-  </a>
+  <aside class="sidebar">
+    <a class="logo" href="index.html">BARB</a>
+    <nav class="menu">
+      <a href="projects.html">ARCHITECTURE</a>
+      <a href="interior.html">INTERIOR</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+      <a href="press.html">PRESS</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <!-- Replace hero.jpg with your image (see step 2) -->
+    <img class="hero" src="hero.jpg" alt="Featured project hero" />
+  </main>
 </body>
 </html>
