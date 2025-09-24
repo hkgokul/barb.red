@@ -9,10 +9,14 @@ body {
 }
 
 /* Layout */
-:root { --sidebar-w: 230px; }
+:root {
+  --sidebar-w: 230px;  /* left menu width */
+  --frame: 28px;       /* white border around hero */
+}
+
 .sidebar {
   position: fixed;
-  inset: 0 auto 0 0;            /* top/right/bottom/left */
+  inset: 0 auto 0 0;           /* top/right/bottom/left */
   width: var(--sidebar-w);
   padding: 28px 22px;
   display: flex;
@@ -21,6 +25,7 @@ body {
   background: #fff;
   border-right: 1px solid #eee;
 }
+
 .logo {
   font-family: "Georgia", serif;
   font-size: 28px;
@@ -28,6 +33,7 @@ body {
   text-decoration: none;
   color: #111;
 }
+
 .menu { display: flex; flex-direction: column; gap: 10px; }
 .menu a {
   text-decoration: none;
@@ -41,21 +47,32 @@ body {
 /* Main content */
 .content {
   margin-left: var(--sidebar-w);
-  height: 100vh;                /* fill viewport height */
+  height: 100vh;                  /* fill viewport height */
   overflow: hidden;
+  background: #fff;
 }
+
+/* White frame around the hero image */
+.frame {
+  height: 100%;
+  padding: var(--frame);
+  background: #fff;
+}
+
+/* Hero image fills the framed area and crops neatly */
 .hero {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;            /* fill + crop */
-  object-position: center;      /* center the crop */
+  object-fit: cover;              /* fill + crop */
+  object-position: center;        /* center the crop */
 }
+
 .content-pad { padding: 48px 48px 72px; max-width: 900px; }
 
 /* Mobile: sidebar becomes a top bar */
 @media (max-width: 860px) {
-  :root { --sidebar-w: 100%; }
+  :root { --sidebar-w: 100%; --frame: 16px; }
   .sidebar {
     position: sticky;
     width: 100%;
@@ -64,5 +81,6 @@ body {
   }
   .menu { flex-direction: row; flex-wrap: wrap; gap: 14px; }
   .content { margin-left: 0; height: calc(100vh - 92px); } /* subtract top bar */
+  .frame { height: 100%; padding: var(--frame); }
   .hero { height: 100%; }
 }
