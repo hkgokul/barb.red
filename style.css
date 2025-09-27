@@ -11,7 +11,7 @@ body {
 /* Layout */
 :root {
   --sidebar-w: 230px;  /* left menu width */
-  --frame: 112px;       /* white border around hero (was 28px) */
+  --frame: 56px;       /* white border around hero (was 28px) */
 }
 
 .sidebar {
@@ -39,7 +39,7 @@ body {
 .menu a {
   text-decoration: none;
   color: #666;
-  font-size: 8px;             /* was 12px */
+  font-size: 10px;             /* was 12px */
   letter-spacing: .16em;
   text-transform: uppercase;
 }
