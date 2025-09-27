@@ -1,47 +1,197 @@
-/* Base layout (keep your existing styles, adding typography + alignment below) */
+/* Basic reset */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+/* -------- Base body (Georgia like MORQ) -------- */
 body {
   margin: 0;
-  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-family: Georgia, "Times New Roman", Times, serif; /* body = serif */
   font-size: 16px;
   line-height: 1.65;
   color: #111;
+  background: #fff;
 }
 
-h1, h2, h3 {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-               Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  font-weight: 700;
+/* -------- Layout -------- */
+:root {
+  --sidebar-w: 230px;  /* left menu width */
+  --frame: 56px;       /* white border around hero */
+}
+
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--sidebar-w);
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: #fff;
+  border-right: 1px solid #eee;
+}
+
+.logo {
+  font-family: Georgia, serif;      /* keep your wordmark look */
+  font-size: 64px;
+  letter-spacing: .08em;
+  text-decoration: none;
   color: #111;
-  margin-top: 0;
+  text-transform: uppercase;
 }
 
-/* Page title (About) */
-.page-title {
-  font-size: 40px;
-  font-weight: 700;
+/* Sidebar menu = Helvetica Neue / Arial */
+.menu { display: flex; flex-direction: column; gap: 10px; }
+.menu a {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* headings/menu = sans */
+  text-decoration: none;
+  color: #666;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.menu a:hover, .menu a.active { color: #111; }
+
+/* Main content */
+.content {
+  margin-left: var(--sidebar-w);
+  height: 100vh;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* White frame around hero */
+.frame {
+  height: 100%;
+  padding: var(--frame);
+  background: #fff;
+}
+
+/* Hero image fill */
+.hero {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.content-pad { padding: 25px 25px 72px; max-width: 900px; }
+
+/* Mobile */
+@media (max-width: 860px) {
+  :root { --sidebar-w: 100%; --frame: 24px; }
+  .sidebar {
+    position: sticky;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+  }
+  .menu { flex-direction: row; flex-wrap: wrap; gap: 14px; }
+  .content { margin-left: 0; height: calc(100vh - 92px); }
+  .frame { height: 100%; padding: var(--frame); }
+  .hero { height: 100%; }
+}
+
+/* -------- About page typography & layout -------- */
+
+/* Page title: keep ALLISON (handwritten) */
+h1.page-title {
+  font-family: 'Allison', cursive !important;  /* don't remove */
+  font-size: 90px !important;                  /* adjust as you like */
+  font-style: normal;
+  font-weight: 400;
   line-height: 1.2;
-  margin: 0;
+  margin: 0 0 24px 0;
 }
 
-/* Section labels same size as body, no emphasis */
-.section-label {
-  font-size: 16px;
+/* Headings elsewhere (Helvetica Neue / Arial) */
+h1, h2, h3 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
-  margin: 24px 0 8px 0;
+  letter-spacing: 0.05em;
   text-transform: none;
+  margin-top: 0;
+  color: #111;
 }
 
-/* Align About with BARB logo line */
+/* Allow text pages to scroll */
+.content.text {
+  height: auto;
+  min-height: 100vh;
+  overflow: visible;
+}
+
+/* Align title row with sidebar logo baseline */
 .title-row {
   display: flex;
   align-items: center;
-  margin-top: -20px; /* adjust if needed */
-  margin-bottom: 20px;
+  margin-top: -6px;
+  margin-bottom: 16px;
 }
 
-/* Footer note */
+/* Section labels: same size as body, no emphasis */
+.section-label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* keep sans for labels */
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: none;  /* not uppercase */
+  margin: 24px 0 8px;
+}
+
+/* Small footer note */
 .footer-note {
   color: #666;
   font-size: 12px;
   margin-top: 28px;
+}
+/* Footer at the bottom with divider */
+.footer-note {
+  color: #666;
+  font-size: 12px;
+  margin: 40px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid #ddd;   /* subtle grey line */
+  text-align: left;
+}
+
+/* Stick footer at bottom of page content */
+.content.text {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.footer-note {
+  margin-top: auto;  /* pushes footer down */
+}
+/* Let the text page be the flex parent */
+.content.text {
+  display: flex;
+  min-height: 100vh;
+  overflow: auto;              /* scroll if content is long */
+}
+
+/* Make inner wrapper a flex column so footer can push down */
+.content-pad {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 30px 25px 30px;
+  max-width: 900px;
+}
+
+/* Single, final footer rule */
+.footer-note {
+  margin-top: auto;            /* push to bottom */
+  padding-top: 22px;
+  border-top: 1px solid #ddd;  /* subtle divider */
+  color: #666;
+  font-size: 12px;
+}
+
+.float-right {
+  float: right;
+  max-width: 40%;       /* keeps image proportionate */
+  height: auto;
+  margin: 0 0 20px 20px; /* gap: top/right/bottom/left */
 }
