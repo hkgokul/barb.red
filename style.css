@@ -195,3 +195,66 @@ h1, h2, h3 {
   height: auto;
   margin: 0 0 20px 20px; /* gap: top/right/bottom/left */
 }
+/* ====== Tablet ↓ (<= 860px) ====== */
+@media (max-width: 860px) {
+  :root { --sidebar-w: 100%; --frame: 24px; }
+
+  /* Sidebar becomes a top bar */
+  .sidebar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 16px;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+  }
+  .logo{ font-size: 40px; line-height: 1; }
+
+  .menu{
+    flex-direction: row;
+    gap: 14px;
+    overflow-x: auto;     /* in case items overflow */
+    -webkit-overflow-scrolling: touch;
+  }
+  .menu a{ font-size: 11px; letter-spacing: .14em; padding: 4px 0; }
+
+  /* Content sits below the top bar and can scroll */
+  .content{ margin-left: 0; height: auto; min-height: 100vh; overflow: visible; }
+  .content-pad{ padding: 20px 16px 28px; max-width: 820px; }
+
+  /* Page title and headings scale down a bit */
+  h1.page-title{ font-size: 64px !important; }
+  h2.section-label{ font-size: 15px; }
+
+  /* Right-side image blocks stack under text */
+  .text-with-image{ grid-template-columns: 1fr; }
+}
+
+/* ====== Phone ↓ (<= 520px) ====== */
+@media (max-width: 520px) {
+  .logo{ font-size: 34px; }
+  h1.page-title{ font-size: 48px !important; margin-bottom: 12px; }
+
+  body{ font-size: 15px; line-height: 1.5; }
+  p{ margin: 0 0 10px; }
+
+  .content-pad{ padding: 16px 14px 24px; }
+
+  /* Any floated images should break the float on phones */
+  .float-right{
+    float: none;
+    display: block;
+    max-width: 100%;
+    margin: 12px 0;
+  }
+
+  /* If you ever use a full-page side image layout */
+  .side-image{ padding: 12px 14px; }
+  .side-image img{ width: 100%; height: auto; }
+}
